@@ -9,7 +9,6 @@
         background: #3494e6;
         height: 100vh;
         overflow-y: hidden;
-        margin: 2rem;
         font-family: sans-serif;
       }
       .item {
@@ -19,12 +18,11 @@
       .container {
         display: grid;
         gap: 1rem;
-        grid-template-columns: 1fr 150px;
-        grid-template-areas:
-          "header header"
-          "content nav"
-          "footer footer";
-        grid-template-rows: auto;
+        grid:
+          "header header" calc(10vh - 1rem)
+          "content nav" calc(80vh - 1rem)
+          "footer footer" calc(10vh - 1rem)
+          / 1fr minmax(20px, 300px);
       }
       .header {
         grid-area: header;
