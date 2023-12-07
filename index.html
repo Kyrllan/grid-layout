@@ -6,52 +6,91 @@
     <title>CSS Grid Layout</title>
     <style>
       body {
+        font-family: sans-serif;
         background: #3494e6;
         height: 100vh;
-        overflow-y: hidden;
-        font-family: sans-serif;
         margin: 0;
       }
       .container {
         height: 100%;
         display: grid;
-        grid-template-columns: 400px;
-        grid-template-rows: auto;
-        justify-content: center;
-        align-content: center;
-      }
-      .form {
-        background: rgba(255, 255, 255, 0.6);
-        padding: 2rem;
-        border-radius: 5px;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-auto-rows: auto;
+        grid-template-columns: 200px 1fr;
+        grid-template-rows: 75px 1fr 75px;
         gap: 1rem;
-        justify-items: center;
+        grid-template-areas:
+          "header header"
+          "navigation main"
+          "footer footer";
       }
-      .login-text-field {
-        width: 100%;
-        border: 1px solid #eee;
-        padding: 0.3rem;
-        outline: none;
-        border-radius: 5px;
+      .header,
+      .main,
+      .navigation,
+      .footer {
+        background: rgba(255, 255, 255, 0.6);
+        display: grid;
+        justify-content: center;
+        align-items: center;
       }
-      button {
-        border: none;
-        border-radius: 5px;
-        padding: 0.3rem;
+      .header {
+        grid-area: header;
+      }
+      .main {
+        grid-area: main;
+        justify-content: stretch;
+        align-items: stretch;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-auto-rows: 150px;
+        gap: 1rem;
+        padding: 1rem;
+        overflow-y: auto;
+      }
+      .navigation {
+        grid-area: navigation;
+      }
+      .footer {
+        grid-area: footer;
+      }
+      .blog-item {
+        background: #ec6ead;
+      }
+      @media screen and (max-width: 600px) {
+        .navigation {
+          display: none;
+        }
+        .container {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "header"
+            "main"
+            "footer";
+        }
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <form class="form">
-        <h2>Faça seu login!</h2>
-        <input type="text" class="login-text-field" placeholder="E-mail" />
-        <input type="text" class="login-text-field" placeholder="Senha" />
-        <button>Entrar</button>
-      </form>
+      <header class="header">
+        <h3>Header</h3>
+      </header>
+      <aside class="navigation">
+        <h3>Sidebar</h3>
+      </aside>
+      <main class="main">
+        <div class="blog-item"></div>
+        <div class="blog-item"></div>
+        <div class="blog-item"></div>
+        <div class="blog-item"></div>
+        <div class="blog-item"></div>
+        <div class="blog-item"></div>
+        <div class="blog-item"></div>
+        <div class="blog-item"></div>
+        <div class="blog-item"></div>
+      </main>
+      <footer class="footer">
+        <h3>Footer</h3>
+      </footer>
     </div>
   </body>
 </html>
